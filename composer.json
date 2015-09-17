@@ -1,0 +1,27 @@
+{
+    "name": "sparkphp/project",
+    "description": "A sample project for building an application using Spark.",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "sparkphp/spark": "~0.4",
+        "lichtner/fluentpdo": "dev-master",
+        "josegonzalez/dotenv": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spark\\Project\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniel Olfelt",
+            "email": "dolfelt@gmail.com"
+        },
+        {
+            "name": "Sean Prunka",
+            "email": "sprunka@gmail.com"
+        }
+
+    ]
+}
