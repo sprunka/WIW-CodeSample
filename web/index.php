@@ -21,8 +21,6 @@ $injector->define('PDO', [
 $injector->share('PDO');
 $injector->share('FluentPDO');
 
-
-
 $app = Spark\Application::boot($injector);
 
 $app->setMiddleware([

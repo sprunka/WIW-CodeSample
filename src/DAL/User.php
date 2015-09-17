@@ -6,12 +6,12 @@
  * Time: 12:58 PM
  */
 
-namespace Spark\Project\Domain;
+namespace Spark\Project\DAL;
 
 
 class User
 {
-    private $id=1, $name='foo', $role='manager', $email='email@domain.com', $phone='555.1212', $create_at='DATE', $updated_at='DATE';
+    private $id, $name, $role, $email, $phone, $created_at, $updated_at;
 
     public function __construct(\FluentPDO $fpdo, $id=null, $userData=null)
     {
@@ -35,7 +35,15 @@ class User
     private function getUser($id)
     {
         $query = $this->fpdo->from('user', $id);
-        echo "<pre>\n".print_r($query,true)."</pre>\n";
+
+        foreach ($query as $row) {
+            $this->name  = $row['name'];
+            $this->role  = $row['role'];
+            $this->email = $row['email'];
+            $this->phone = $row['phone'];
+            $this->created_at = $row['created_at'];
+            $this->updated_at = $row['updated_at'];
+        }
     }
 
     public function isManager()

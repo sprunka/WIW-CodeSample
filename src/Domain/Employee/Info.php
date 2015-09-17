@@ -4,11 +4,11 @@ namespace Spark\Project\Domain\Employee;
 
 use Spark\Adr\DomainInterface;
 use Spark\Payload;
-use Spark\Project\Domain\User;
+use Spark\Project\DAL\User;
 
 class Info implements DomainInterface
 {
-    public function __construct(\FluentPDO $fdpo)
+    public function __construct(\FluentPDO $fpdo)
     {
         $this->fpdo = $fpdo;
     }
@@ -30,16 +30,15 @@ class Info implements DomainInterface
         if ( $manager->isManager() ) {
             $user = new User($this->fpdo, $employeeId);
             $output['info'] = $user->getContactInfo();
+        } else {
+            $output['Credential Error'] = 'You must supply your manager credentials.';
         }
 
 
         return (new Payload)
             ->withStatus(Payload::OK)
             ->withOutput(
-                [
-                    $input,
-                    $output
-                ]
+                [$output]
             );
     }
 }
