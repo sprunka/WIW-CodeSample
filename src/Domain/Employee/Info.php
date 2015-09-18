@@ -38,7 +38,7 @@ class Info implements DomainInterface
         return (new Payload)
             ->withStatus(Payload::OK)
             ->withOutput(
-                [$output]
+                $output
             );
     }
 }
