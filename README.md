@@ -1,4 +1,13 @@
-# Code Requirements per [When I Work GitHub](https://github.com/wheniwork/standards/blob/master/project.md)
+# This is a WiP (Work in Progress)
+
+I will update this README as I progress with which features are currently available.
+Currently, I have added one extra User Story for convenience:
+- [x] As an API consumer, I want to see what endpoints are available to me. (Access the root of the API)
+
+I will add a check mark to the User Stories below that are working.
+
+
+Following here are the Code Requirements per [When I Work GitHub](https://github.com/wheniwork/standards/blob/master/project.md)
 
 
 # REST Scheduler API
@@ -79,13 +88,13 @@ an `employee_id` will be visible to all employees.
 
 **Please note that this not intended to be a CRUD application.** Only the functionality described by the user stories should be exposed via the API.
 
-- [ ] As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me.
+- [x] As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me.
 - [ ] As an employee, I want to know who I am working with, by being able see the employees that are working during the same time period as me.
 - [ ] As an employee, I want to know how much I worked, by being able to get a summary of hours worked for each week.
-- [ ] As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
+- [x] As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
 
 - [ ] As a manager, I want to schedule my employees, by creating shifts for any employee.
 - [ ] As a manager, I want to see the schedule, by listing shifts within a specific time period.
 - [ ] As a manager, I want to be able to change a shift, by updating the time details.
 - [ ] As a manager, I want to be able to assign a shift, by changing the employee that will work a shift.
-- [ ] As a manager, I want to contact an employee, by seeing employee details.
+- [x] As a manager, I want to contact an employee, by seeing employee details.
