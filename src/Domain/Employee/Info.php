@@ -26,6 +26,8 @@ class Info implements DomainInterface
             $output['Input Error'] = 'You must supply an Employee ID to request their contact information.';
         }
 
+        // TODO: remove dependency or inject. Possibly remove separate DAL container object entirely, making FPDO calls here.
+        // Alternately, fix DAL container object to allow for empty objects to be used via injection.
         $manager = new User($this->fpdo, $managerId);
         if ( $manager->isManager() ) {
             $user = new User($this->fpdo, $employeeId);

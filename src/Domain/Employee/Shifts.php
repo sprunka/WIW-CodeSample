@@ -21,6 +21,9 @@ class Shifts implements DomainInterface
         } else {
             $output['Input Error'] = 'You must supply your Employee credentials to request your shift information.';
         }
+
+        // TODO: create User Story clarification to detail what shift details are required.
+        // For example, should this return the manager as well? If so, by name? by ID? With contact (see related User Story.)
         $query = $this->fpdo->from('shift')
             ->where('employee_id', $employeeId);
 
