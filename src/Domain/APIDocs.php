@@ -23,13 +23,13 @@ class APIDocs implements DomainInterface
                     'List Manager Contact'=>'GET /mymanagers[/{employeeId}]'
                 ],
                 'Manager' => [
-                    //'Create a shifts'=>'POST /create-shift[/{managerId}/{employeeId}/{shift}]',
+                    'Create a shift'=>'POST to /create-shift passing $managerId and the $shift data',
                     'List Shifts by time frame'=>'GET /list-shifts[/{managerId}/{startTime}/{endTime}]',
-                    //'Update a given shift'=>'PUT /update-shift[/{managerId}/{shiftId}/{shift}]',
-                    //'Assign a shift to an employee'=>'PUT /assign-shift[/{managerId}/{shiftId}/{employeeId}]',
+                    //'Update a given shift'=>'PUT to /update-shift passing $managerId, $shiftId and new $shift data',
+                    //'Assign a shift to an employee'=>'PUT to /assign-shift passing $managerId, $shiftId, and new $employeeId]',
                     'List Employee Info'=>'GET /employee-data[/{managerId}/{employeeId}]'
                 ],
-                'NOTES' => 'the variable "shift" should be an object/array containing the details of the shift'
+                'NOTES' => 'the variable "shift" should be an array containing the details of the shift, including employee ID which may be null.'
             ]);
     }
 }

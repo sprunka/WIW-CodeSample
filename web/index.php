@@ -50,11 +50,11 @@ $app->addRoutes(function(Spark\Router $r) {
     $r->get('/mymanagers[/{employeeId}]', 'Spark\Project\Domain\Employee\Managers');
 
     //Managers have expanded access
-    //the variable "shift" should be an object/array containing the details of the shift
-    $r->post('/create-shift[/{managerId}/{employeeId}/{shift}]', 'Spark\Project\Domain\Manager\Shift\Add');
+    //the variable "shift" should be an array containing the details of the shift, including employee ID which may be null.
+    $r->post('/create-shift', 'Spark\Project\Domain\Manager\Shift\Add');
     $r->get('/list-shifts[/{managerId}/{startTime}/{endTime}]', 'Spark\Project\Domain\Employee\Shifts');
-    $r->put('/update-shift[/{managerId}/{shiftId}/{shift}]', 'Spark\Project\Domain\Manager\Shift\Update');
-    $r->put('/assign-shift[/{managerId}/{shiftId}/{employeeId}]', 'Spark\Project\Domain\Manager\Shift\Assign');
+    $r->put('/update-shift', 'Spark\Project\Domain\Manager\Shift\Update');
+    $r->put('/assign-shift', 'Spark\Project\Domain\Manager\Shift\Assign');
     $r->get('/employee-data[/{managerId}/{employeeId}]', 'Spark\Project\Domain\Employee\Info');
 });
 
