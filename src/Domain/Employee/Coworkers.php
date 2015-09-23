@@ -6,12 +6,10 @@ use Spark\Adr\DomainInterface;
 use Spark\Payload;
 
 /**
- * Class Coworkers
- * @package Spark\Project\Domain\Employee
+ * Class Coworkers.
  */
 class Coworkers implements DomainInterface
 {
-
     /**
      * @param \FluentPDO $fluentPDO
      */
@@ -22,6 +20,7 @@ class Coworkers implements DomainInterface
 
     /**
      * @param array $input
+     *
      * @return \Spark\Adr\PayloadInterface|Payload
      */
     public function __invoke(array $input)
@@ -42,16 +41,14 @@ class Coworkers implements DomainInterface
                 ->innerJoin('user ON user.id = s2.employee_id')
                 ->select('user.name');
 
-            foreach ($query as $row)
-            {
-                $output[] = ['shift' => $row['id'], 'coworker'=>$row['name']];
+            foreach ($query as $row) {
+                $output[] = ['shift' => $row['id'], 'coworker' => $row['name']];
             }
-
         } else {
             $output['Input Error'] = 'You must supply your Employee credentials to request your shift information.';
         }
 
-        return (new Payload)
+        return (new Payload())
             ->withStatus(Payload::OK)
             ->withOutput(
                 $output

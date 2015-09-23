@@ -6,12 +6,10 @@ use Spark\Adr\DomainInterface;
 use Spark\Payload;
 
 /**
- * Class Hours
- * @package Spark\Project\Domain\Employee
+ * Class Hours.
  */
 class Hours implements DomainInterface
 {
-
     /**
      * @param \FluentPDO $fluentPDO
      */
@@ -22,6 +20,7 @@ class Hours implements DomainInterface
 
     /**
      * @param array $input
+     *
      * @return \Spark\Adr\PayloadInterface|Payload
      */
     public function __invoke(array $input)
@@ -40,24 +39,23 @@ class Hours implements DomainInterface
             //initialize internal array.
             $hoursThisWeek = [];
 
-            foreach ($query as $row)
-            {
+            foreach ($query as $row) {
                 $start = \DateTime::createFromFormat(DATE_RFC2822, $row['start_time']);
                 $end = \DateTime::createFromFormat(DATE_RFC2822, $row['end_time']);
                 $week = $end->format('W');
 
                 $interval = $start->diff($end);
                 //This only calculates the specific whole hours.
-                $hoursThisShift =  $interval->format('%r%H');
+                $hoursThisShift = $interval->format('%r%H');
 
                 //To add in the partial hours, we must calculate the minutes and seconds independently.
-                $minutesThisShift =  $interval->format('%r%I');
-                $secondsThisShift =  $interval->format('%r%S');
+                $minutesThisShift = $interval->format('%r%I');
+                $secondsThisShift = $interval->format('%r%S');
 
                 //Then add them in.
-                $hoursThisShift += ($minutesThisShift / 60) + ($secondsThisShift/3600);
+                $hoursThisShift += ($minutesThisShift / 60) + ($secondsThisShift / 3600);
 
-                if (!array_key_exists($week, $hoursThisWeek)){
+                if (!array_key_exists($week, $hoursThisWeek)) {
                     $hoursThisWeek[$week] = $hoursThisShift;
                 } else {
                     $hoursThisWeek[$week] += $hoursThisShift;
@@ -65,13 +63,12 @@ class Hours implements DomainInterface
 
                 // TODO: clarify User Story. This total hours includes every second that was scheduled.
                 $output[$week] = ['week' => $week, 'hours_worked' => $hoursThisWeek[$week]];
-
             }
         } else {
             $output['Input Error'] = 'You must supply your Employee credentials to request your shift information.';
         }
 
-        return (new Payload)
+        return (new Payload())
             ->withStatus(Payload::OK)
             ->withOutput(
                 $output

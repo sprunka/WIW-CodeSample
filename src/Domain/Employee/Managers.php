@@ -6,12 +6,10 @@ use Spark\Adr\DomainInterface;
 use Spark\Payload;
 
 /**
- * Class Managers
- * @package Spark\Project\Domain\Employee
+ * Class Managers.
  */
 class Managers implements DomainInterface
 {
-
     /**
      * @param \FluentPDO $fluentPDO
      */
@@ -22,6 +20,7 @@ class Managers implements DomainInterface
 
     /**
      * @param array $input
+     *
      * @return \Spark\Adr\PayloadInterface|Payload
      */
     public function __invoke(array $input)
@@ -37,8 +36,7 @@ class Managers implements DomainInterface
                 ->where('shift.employee_id', $employeeId)
                 ->groupBy('user.id');
 
-            foreach ($query as $row)
-            {
+            foreach ($query as $row) {
                 // TODO: Filter output to remove null data?
                 $output[] = ['name' => $row['name'], 'phone' => $row['phone'], 'email' => $row['email']];
             }
@@ -46,7 +44,7 @@ class Managers implements DomainInterface
             $output['Input Error'] = 'You must supply your Employee credentials to request manager contact information.';
         }
 
-        return (new Payload)
+        return (new Payload())
             ->withStatus(Payload::OK)
             ->withOutput(
                 $output

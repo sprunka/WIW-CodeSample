@@ -6,12 +6,10 @@ use Spark\Adr\DomainInterface;
 use Spark\Payload;
 
 /**
- * Class Assign
- * @package Spark\Project\Domain\Manager\Shift
+ * Class Assign.
  */
 class Assign implements DomainInterface
 {
-
     /**
      * @param \FluentPDO $fluentPDO
      */
@@ -22,7 +20,9 @@ class Assign implements DomainInterface
 
     /**
      * @param array $input
+     *
      * @return \Spark\Adr\PayloadInterface|Payload
+     *
      * @throws \Exception
      */
     public function __invoke(array $input)
@@ -53,13 +53,12 @@ class Assign implements DomainInterface
 
                 //$query is number of rows updated In our case it should always be 1 on success or 0 on failure.
                 $output['shift_id'] = $query;
-
             }
         } else {
             $output['Credential Error'] = 'You must supply your manager credentials.';
         }
 
-        return (new Payload)
+        return (new Payload())
             ->withStatus(Payload::OK)
             ->withOutput($output);
     }

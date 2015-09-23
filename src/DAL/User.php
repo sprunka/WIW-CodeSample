@@ -1,16 +1,15 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sean
  * Date: 9/16/2015
- * Time: 12:58 PM
+ * Time: 12:58 PM.
  */
-
 namespace Spark\Project\DAL;
 
 /**
- * Class User
- * @package Spark\Project\DAL
+ * Class User.
  */
 class User
 {
@@ -18,7 +17,7 @@ class User
 
     /**
      * @param \FluentPDO $fpdo
-     * @param int $id
+     * @param int        $id
      */
     public function __construct(\FluentPDO $fpdo, $id)
     {
@@ -27,15 +26,15 @@ class User
     }
 
     /**
-     * @param $id id of User to generate
+     * @param $id int id of User to generate
      */
     private function getUser($id)
     {
         $query = $this->fpdo->from('user', $id);
 
         foreach ($query as $row) {
-            $this->name  = $row['name'];
-            $this->role  = $row['role'];
+            $this->name = $row['name'];
+            $this->role = $row['role'];
             $this->email = $row['email'];
             $this->phone = $row['phone'];
             $this->created_at = $row['created_at'];
@@ -48,9 +47,10 @@ class User
      */
     public function isManager()
     {
-        if ( $this->role == 'manager' ) {
+        if ($this->role == 'manager') {
             return true;
         }
+
         return false;
     }
 
@@ -62,9 +62,9 @@ class User
         $info = [
             'name' => $this->name,
             'email' => $this->email,
-            'phone' => $this->phone
+            'phone' => $this->phone,
         ];
+
         return $info;
     }
-
 }

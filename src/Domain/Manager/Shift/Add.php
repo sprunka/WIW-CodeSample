@@ -6,12 +6,10 @@ use Spark\Adr\DomainInterface;
 use Spark\Payload;
 
 /**
- * Class Add
- * @package Spark\Project\Domain\Manager\Shift
+ * Class Add.
  */
 class Add implements DomainInterface
 {
-
     /**
      * @param \FluentPDO $fluentPDO
      */
@@ -22,6 +20,7 @@ class Add implements DomainInterface
 
     /**
      * @param array $input
+     *
      * @return \Spark\Adr\PayloadInterface|Payload
      */
     public function __invoke(array $input)
@@ -41,17 +40,16 @@ class Add implements DomainInterface
                 $dbInput['created_at'] = $now->format(DATE_RFC2822);
                 $dbInput['updated_at'] = $now->format(DATE_RFC2822);
 
-                $query = $this->fpdo->insertInto('shift',$dbInput)->execute();
+                $query = $this->fpdo->insertInto('shift', $dbInput)->execute();
 
                 //$query is the inserted row's primary key, in our case, the shift id.
                 $output['shift_id'] = $query;
-
             }
         } else {
             $output['Credential Error'] = 'You must supply your manager credentials.';
         }
 
-        return (new Payload)
+        return (new Payload())
             ->withStatus(Payload::OK)
             ->withOutput($output);
     }

@@ -7,12 +7,10 @@ use Spark\Payload;
 use Spark\Project\DAL\User;
 
 /**
- * Class Info
- * @package Spark\Project\Domain\Employee
+ * Class Info.
  */
 class Info implements DomainInterface
 {
-
     /**
      * @param \FluentPDO $fpdo
      */
@@ -23,6 +21,7 @@ class Info implements DomainInterface
 
     /**
      * @param array $input
+     *
      * @return \Spark\Adr\PayloadInterface|Payload
      */
     public function __invoke(array $input)
@@ -35,7 +34,7 @@ class Info implements DomainInterface
                 $employeeId = $input['employeeId'];
                 $managerId = $input['managerId'];
                 $manager = new User($this->fpdo, $managerId);
-                if ( $manager->isManager() ) {
+                if ($manager->isManager()) {
                     $user = new User($this->fpdo, $employeeId);
                     $output['info'] = $user->getContactInfo();
                 } else {
@@ -48,8 +47,7 @@ class Info implements DomainInterface
             $output['Credential Error'] = 'You must supply your manager credentials.';
         }
 
-
-        return (new Payload)
+        return (new Payload())
             ->withStatus(Payload::OK)
             ->withOutput(
                 $output

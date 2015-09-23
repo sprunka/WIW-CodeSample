@@ -6,12 +6,10 @@ use Spark\Adr\DomainInterface;
 use Spark\Payload;
 
 /**
- * Class Shifts
- * @package Spark\Project\Domain\Employee
+ * Class Shifts.
  */
 class Shifts implements DomainInterface
 {
-
     /**
      * @param \FluentPDO $fluentPDO
      */
@@ -22,6 +20,7 @@ class Shifts implements DomainInterface
 
     /**
      * @param array $input
+     *
      * @return \Spark\Adr\PayloadInterface|Payload
      */
     public function __invoke(array $input)
@@ -41,12 +40,10 @@ class Shifts implements DomainInterface
             $query = $this->fpdo->from('shift')
                 ->where('employee_id', $employeeId);
 
-            foreach ($query as $row)
-            {
-                $output[] = ['shift_id' => $row['id'], 'start'=>$row['start_time'], 'end'=>$row['end_time'], 'break' => $row['break']];
+            foreach ($query as $row) {
+                $output[] = ['shift_id' => $row['id'], 'start' => $row['start_time'], 'end' => $row['end_time'], 'break' => $row['break']];
             }
         } elseif (!empty($input['managerId']) && !empty($input['startTime']) && !empty($input['endTime'])) {
-
             $managerId = $input['managerId'];
             $startTime = urldecode($input['startTime']);
             $endTime = urldecode($input['endTime']);
@@ -58,22 +55,20 @@ class Shifts implements DomainInterface
                 ->where('str_to_date(end_time,\'%a, %d %b %Y %T\') <= str_to_date(\''.$endTime.'\', \'%a, %d %b %Y %T\')')
             ;
 
-            foreach ($query as $row)
-            {
+            foreach ($query as $row) {
                 $output[] = [
                     'shift_id' => $row['id'],
                     'start' => $row['start_time'],
                     'end' => $row['end_time'],
                     'break' => $row['break'],
-                    'employee_id' => $row['employee_id']
+                    'employee_id' => $row['employee_id'],
                 ];
             }
-
         } else {
             $output['Input Error'] = 'You must supply your Employee or Manager credentials to request shift information.';
         }
 
-        return (new Payload)
+        return (new Payload())
             ->withStatus(Payload::OK)
             ->withOutput(
                 $output
