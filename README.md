@@ -1,14 +1,37 @@
-# This is a WiP (Work in Progress)
-
 I will update this README as I progress with which features are currently available.
 Currently, I have added one extra User Story for convenience:
 - [x] As an API consumer, I want to see what endpoints are available to me. (Access the root of the API)
 
-I will add a check mark to the User Stories below that are working.
+Completed User Stories are marked as complete.
+
+# Disclaimers:
 
 I am currently using the date string as specified in the requirements, though my own preference would be to store the data in MySQL's defalt DATETIME format and then format to RFC 2822 for output in PHP.
 As it stands, I'll be using MySQL's str_to_date([string date],'%a, %d %b %Y %T') functionality for date comparisons.
 
+This is a WiP (Work in Progress)
+
+I am currently not using any specific authorizations or verifications
+From my code:
+```
+    /*
+     * Notes on Auth Layer:
+     * This API currently *only* covers the User Stories listed in the assignment
+     * As such it does not currently handle any validation of the user being who they claim to be.
+     * It does verify that the userId (employee or manager) is valid for the type of request issued.
+     * The current userId field should be replaced with a validated token when validation is added.
+     * I did not add an authentication layer, as the user stories do not reference how the login would occur
+     * We might do oauth or direct API via a POST to create a login token, etc.
+     */
+```     
+
+Additionally, I have not added any proper API error codes, error checking, or unit tests.
+
+This code is merely PoC (proof-of-concept) at this stage.
+
+I may go back through and properly return error codes on failures, add UnitTesting, and validate input. As-is, however,
+this does none of that. I am aware of the flaws in this style of PoC coding.
+     
 Following here are the Code Requirements per [When I Work GitHub](https://github.com/wheniwork/standards/blob/master/project.md)
 
 
@@ -97,6 +120,6 @@ an `employee_id` will be visible to all employees.
 
 - [x] As a manager, I want to schedule my employees, by creating shifts for any employee.
 - [x] As a manager, I want to see the schedule, by listing shifts within a specific time period.
-- [ ] As a manager, I want to be able to change a shift, by updating the time details.
+- [x] As a manager, I want to be able to change a shift, by updating the time details.
 - [x] As a manager, I want to be able to assign a shift, by changing the employee that will work a shift.
 - [x] As a manager, I want to contact an employee, by seeing employee details.
