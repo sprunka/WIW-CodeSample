@@ -96,7 +96,7 @@ an `employee_id` will be visible to all employees.
 - [x] As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
 
 - [ ] As a manager, I want to schedule my employees, by creating shifts for any employee.
-- [ ] As a manager, I want to see the schedule, by listing shifts within a specific time period.
+- [x] As a manager, I want to see the schedule, by listing shifts within a specific time period.
 - [ ] As a manager, I want to be able to change a shift, by updating the time details.
 - [ ] As a manager, I want to be able to assign a shift, by changing the employee that will work a shift.
 - [x] As a manager, I want to contact an employee, by seeing employee details.

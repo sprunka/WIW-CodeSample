@@ -33,8 +33,32 @@ class Shifts implements DomainInterface
             {
                 $output[] = ['shift_id' => $row['id'], 'start'=>$row['start_time'], 'end'=>$row['end_time'], 'break' => $row['break']];
             }
+        } elseif (!empty($input['managerId']) && !empty($input['startTime']) && !empty($input['endTime'])) {
+
+            $managerId = $input['managerId'];
+            $startTime = urldecode($input['startTime']);
+            $endTime = urldecode($input['endTime']);
+
+            // Assumes inclusive time window, not exclusive. To use exclusive remove the "or equal" from the two where clauses.
+            $query = $this->fpdo->from('shift')
+                ->where('manager_id', $managerId)
+                ->where('str_to_date(start_time,\'%a, %d %b %Y %T\') >= str_to_date(\''.$startTime.'\', \'%a, %d %b %Y %T\')')
+                ->where('str_to_date(end_time,\'%a, %d %b %Y %T\') <= str_to_date(\''.$endTime.'\', \'%a, %d %b %Y %T\')')
+            ;
+
+            foreach ($query as $row)
+            {
+                $output[] = [
+                    'shift_id' => $row['id'],
+                    'start' => $row['start_time'],
+                    'end' => $row['end_time'],
+                    'break' => $row['break'],
+                    'employee_id' => $row['employee_id']
+                ];
+            }
+
         } else {
-            $output['Input Error'] = 'You must supply your Employee credentials to request your shift information.';
+            $output['Input Error'] = 'You must supply your Employee or Manager credentials to request shift information.';
         }
 
         return (new Payload)
