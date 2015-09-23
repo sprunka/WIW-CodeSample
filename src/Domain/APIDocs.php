@@ -18,7 +18,7 @@ class APIDocs implements DomainInterface
             ->withOutput([
                 'Employee' => [
                     'List Shifts'=>'GET /myshifts[/{employeeId}]',
-                    //'List Coworkers'=>'GET /mycoworkers[/{employeeId}]',
+                    'List Coworkers'=>'GET /mycoworkers[/{employeeId}]',
                     //'List Hours Worked'=>'GET /myhours[/{employeeId}]',
                     'List Manager Contact'=>'GET /mymanagers[/{employeeId}]'
                 ],
