@@ -18,20 +18,20 @@ class Managers implements DomainInterface
 
         if (!empty($input['employeeId'])) {
             $employeeId = $input['employeeId'];
+
+            //TODO: add shift ID and repeat manager info? ((FOr compatibility with other User Stories)
+            $query = $this->fpdo->from('user')
+                ->leftJoin('shift ON shift.manager_id = user.id')
+                ->where('shift.employee_id', $employeeId)
+                ->groupBy('user.id');
+
+            foreach ($query as $row)
+            {
+                // TODO: Filter output to remove null data?
+                $output[] = ['name' => $row['name'], 'phone' => $row['phone'], 'email' => $row['email']];
+            }
         } else {
             $output['Input Error'] = 'You must supply your Employee credentials to request manager contact information.';
-        }
-
-        //TODO: add shift ID and repeat manager info? ((FOr compatibility with other User Stories)
-        $query = $this->fpdo->from('user')
-            ->leftJoin('shift ON shift.manager_id = user.id')
-            ->where('shift.employee_id', $employeeId)
-            ->groupBy('user.id');
-
-        foreach ($query as $row)
-        {
-            // TODO: Filter output to remove null data?
-            $output[] = ['name' => $row['name'], 'phone' => $row['phone'], 'email' => $row['email']];
         }
 
         return (new Payload)
