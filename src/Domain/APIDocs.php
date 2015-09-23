@@ -19,7 +19,7 @@ class APIDocs implements DomainInterface
                 'Employee' => [
                     'List Shifts'=>'GET /myshifts[/{employeeId}]',
                     'List Coworkers'=>'GET /mycoworkers[/{employeeId}]',
-                    //'List Hours Worked'=>'GET /myhours[/{employeeId}]',
+                    'List Hours Worked'=>'GET /myhours[/{employeeId}]',
                     'List Manager Contact'=>'GET /mymanagers[/{employeeId}]'
                 ],
                 'Manager' => [
