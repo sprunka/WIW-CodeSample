@@ -8,30 +8,27 @@
 
 namespace Spark\Project\DAL;
 
-
+/**
+ * Class User
+ * @package Spark\Project\DAL
+ */
 class User
 {
-    private $id, $name, $role, $email, $phone, $created_at, $updated_at;
+    private $name, $role, $email, $phone, $created_at, $updated_at;
 
-    public function __construct(\FluentPDO $fpdo, $id=null, $userData=null)
+    /**
+     * @param \FluentPDO $fpdo
+     * @param int $id
+     */
+    public function __construct(\FluentPDO $fpdo, $id)
     {
         $this->fpdo = $fpdo;
-
-        if ( $id == null )
-            if ( $userData !== null && is_array( $userData ) ) {
-                $this->createUser($userData);
-            } else {
-                throw new \Exception('No User Data supplied or User Data in bad format.');
-        } else {
-            $this->getUser($id);
-        }
+        $this->getUser($id);
     }
 
-    private function createUser(array $userData)
-    {
-
-    }
-
+    /**
+     * @param $id id of User to generate
+     */
     private function getUser($id)
     {
         $query = $this->fpdo->from('user', $id);
@@ -46,6 +43,9 @@ class User
         }
     }
 
+    /**
+     * @return bool
+     */
     public function isManager()
     {
         if ( $this->role == 'manager' ) {
@@ -54,6 +54,9 @@ class User
         return false;
     }
 
+    /**
+     * @return array $info of contact information.
+     */
     public function getContactInfo()
     {
         $info = [
