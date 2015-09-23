@@ -31,7 +31,7 @@ class Shifts implements DomainInterface
 
             foreach ($query as $row)
             {
-                $output[] = ['start'=>$row['start_time'], 'end'=>$row['end_time'], 'break' => $row['break']];
+                $output[] = ['shift_id' => $row['id'], 'start'=>$row['start_time'], 'end'=>$row['end_time'], 'break' => $row['break']];
             }
         } else {
             $output['Input Error'] = 'You must supply your Employee credentials to request your shift information.';
