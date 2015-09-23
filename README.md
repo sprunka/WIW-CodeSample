@@ -92,7 +92,7 @@ an `employee_id` will be visible to all employees.
 
 - [x] As an employee, I want to know when I am working, by being able to see all of the shifts assigned to me.
 - [x] As an employee, I want to know who I am working with, by being able see the employees that are working during the same time period as me.
-- [ ] As an employee, I want to know how much I worked, by being able to get a summary of hours worked for each week.
+- [x] As an employee, I want to know how much I worked, by being able to get a summary of hours worked for each week.
 - [x] As an employee, I want to be able to contact my managers, by seeing manager contact information for my shifts.
 
 - [ ] As a manager, I want to schedule my employees, by creating shifts for any employee.
