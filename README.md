@@ -6,6 +6,8 @@ Currently, I have added one extra User Story for convenience:
 
 I will add a check mark to the User Stories below that are working.
 
+I am currently using the date string as specified in the requirements, though my own preference would be to store the data in MySQL's defalt DATETIME format and then format to RFC 2822 for output in PHP.
+As it stands, I'll be using MySQL's str_to_date([string date],'%a, %d %b %Y %T') functionality for date comparisons.
 
 Following here are the Code Requirements per [When I Work GitHub](https://github.com/wheniwork/standards/blob/master/project.md)
 
