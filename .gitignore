@@ -4,3 +4,4 @@ composer.lock
 .idea
 /vendor/
 /web/post.html
+php-cs-fixer.phar
