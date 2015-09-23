@@ -5,13 +5,25 @@ namespace Spark\Project\Domain\Employee;
 use Spark\Adr\DomainInterface;
 use Spark\Payload;
 
+/**
+ * Class Shifts
+ * @package Spark\Project\Domain\Employee
+ */
 class Shifts implements DomainInterface
 {
+
+    /**
+     * @param \FluentPDO $fluentPDO
+     */
     public function __construct(\FluentPDO $fluentPDO)
     {
         $this->fpdo = $fluentPDO;
     }
 
+    /**
+     * @param array $input
+     * @return \Spark\Adr\PayloadInterface|Payload
+     */
     public function __invoke(array $input)
     {
         $output = [];

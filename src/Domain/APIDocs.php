@@ -5,8 +5,17 @@ namespace Spark\Project\Domain;
 use Spark\Adr\DomainInterface;
 use Spark\Payload;
 
+/**
+ * Class APIDocs
+ * @package Spark\Project\Domain
+ */
 class APIDocs implements DomainInterface
 {
+
+    /**
+     * @param array $input
+     * @return \Spark\Adr\PayloadInterface|Payload
+     */
     public function __invoke(array $input)
     {
         // TODO: Find/Research a method for auto-generating this information from Routes.

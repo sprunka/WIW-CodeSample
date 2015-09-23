@@ -5,14 +5,26 @@ namespace Spark\Project\Domain\Manager\Shift;
 use Spark\Adr\DomainInterface;
 use Spark\Payload;
 
+/**
+ * Class Assign
+ * @package Spark\Project\Domain\Manager\Shift
+ */
 class Assign implements DomainInterface
 {
 
+    /**
+     * @param \FluentPDO $fluentPDO
+     */
     public function __construct(\FluentPDO $fluentPDO)
     {
         $this->fpdo = $fluentPDO;
     }
 
+    /**
+     * @param array $input
+     * @return \Spark\Adr\PayloadInterface|Payload
+     * @throws \Exception
+     */
     public function __invoke(array $input)
     {
         $output = [];

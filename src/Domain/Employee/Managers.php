@@ -5,13 +5,25 @@ namespace Spark\Project\Domain\Employee;
 use Spark\Adr\DomainInterface;
 use Spark\Payload;
 
+/**
+ * Class Managers
+ * @package Spark\Project\Domain\Employee
+ */
 class Managers implements DomainInterface
 {
+
+    /**
+     * @param \FluentPDO $fluentPDO
+     */
     public function __construct(\FluentPDO $fluentPDO)
     {
         $this->fpdo = $fluentPDO;
     }
 
+    /**
+     * @param array $input
+     * @return \Spark\Adr\PayloadInterface|Payload
+     */
     public function __invoke(array $input)
     {
         $output = [];
@@ -19,7 +31,7 @@ class Managers implements DomainInterface
         if (!empty($input['employeeId'])) {
             $employeeId = $input['employeeId'];
 
-            //TODO: add shift ID and repeat manager info? ((FOr compatibility with other User Stories)
+            //TODO: add shift ID and repeat manager info? ((For compatibility with other User Stories)
             $query = $this->fpdo->from('user')
                 ->leftJoin('shift ON shift.manager_id = user.id')
                 ->where('shift.employee_id', $employeeId)
