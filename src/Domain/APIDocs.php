@@ -25,7 +25,7 @@ class APIDocs implements DomainInterface
                 'Manager' => [
                     'Create a shift'=>'POST to /create-shift passing $managerId and the $shift data',
                     'List Shifts by time frame'=>'GET /list-shifts[/{managerId}/{startTime}/{endTime}]',
-                    //'Update a given shift'=>'PUT to /update-shift passing $managerId, $shiftId and new $shift data',
+                    'Update a given shift'=>'PUT to /update-shift passing $managerId, $shiftId and new $shift data',
                     'Assign an existing shift to an employee'=>'PUT to /assign-shift passing $managerId, $shiftId, and new $employeeId]',
                     'List Employee Info'=>'GET /employee-data[/{managerId}/{employeeId}]'
                 ],
